@@ -7,6 +7,7 @@ const ProductSelectionLazy = lazy(() =>
   import("./pages/ProductSelection/ProductSelection")
 );
 const AboutLazy = lazy(() => import("./pages/About/About"));
+const HomeLazy = lazy(() => import("./pages/Home/Home"));
 
 function Routes() {
   return (
@@ -14,8 +15,9 @@ function Routes() {
       <Header />
       <Suspense fallback={<Loading />}>
         <Switch>
-          <Route exact path="/" component={ProductSelectionLazy} />
+          <Route exact path="/order" component={ProductSelectionLazy} />
           <Route exact path="/about" component={AboutLazy} />
+          <Route exact path="/" component={HomeLazy} />
         </Switch>
       </Suspense>
     </Router>
