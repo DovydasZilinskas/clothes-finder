@@ -1,9 +1,9 @@
 import React from "react";
 import * as S from "./Button.style";
 
-function Button({ children, handeClick, color }) {
+function Button({ type, children, handeClick, color }) {
   return (
-    <S.Button onClick={handeClick} color={color}>
+    <S.Button type={type} onClick={handeClick} color={color}>
       {children}
     </S.Button>
   );
