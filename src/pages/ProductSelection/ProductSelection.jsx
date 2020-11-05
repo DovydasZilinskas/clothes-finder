@@ -1,6 +1,6 @@
 import React from "react";
 import { Section, Card } from "../../components";
-import * as S from "./Home.style";
+import * as S from "./ProductSelection.style";
 import products from "../../utils/products";
 
 function Home() {
