@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./InputField.style";
 
-function InputField({ value, placeholder, type, handleChange, cities, name }) {
+function InputField({ value, placeholder, type, handleChange, options, name }) {
   switch (type) {
     case "number":
       return (
@@ -36,9 +36,9 @@ function InputField({ value, placeholder, type, handleChange, cities, name }) {
           <option disabled value>
             Select
           </option>
-          {cities.map((e) => (
+          {options.map((e) => (
             <option value={e.value} key={e.id}>
-              {e.city}
+              {e.name}
             </option>
           ))}
         </S.Dropdown>
