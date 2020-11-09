@@ -34,7 +34,6 @@ function Home() {
               <S.CardWrapper key={product.id}>
                 <Card
                   handleClick={() => {
-                    console.log(user);
                     createOrder(user, product, history);
                   }}
                   image={product.image}
