@@ -3,10 +3,26 @@ import { Section, InputField, Button } from "../../components";
 import * as S from "./Home.style";
 import { useHistory } from "react-router-dom";
 
+function createUser(name, company, address, history) {
+  fetch("http://localhost:8080/add-user", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, company, address }),
+  })
+    .then((data) => data.json())
+    .then((insertId) => {
+      console.log(insertId);
+      history.push("/order");
+    })
+    .catch((err) => console.log(err));
+}
+
 function Home() {
   const [name, setName] = useState();
-  const [drop, setDrop] = useState();
-  const [long, setLong] = useState();
+  const [company, setCompany] = useState();
+  const [address, setAddress] = useState();
 
   const history = useHistory();
 
@@ -16,8 +32,7 @@ function Home() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          history.push("/order");
-          console.log(name, long, drop);
+          createUser(name, company, address, history);
         }}
       >
         <S.StyleInputField>
@@ -31,18 +46,18 @@ function Home() {
           <InputField
             type="dropdown"
             options={[
-              { id: 0, name: "Diena", value: "day" },
-              { id: 1, name: "Vakaras", value: "evening" },
-              { id: 3, name: "Naktis", value: "night" },
+              { id: 1, name: "CodeAcademy", value: "ca" },
+              { id: 2, name: "IBM", value: "ibm" },
+              { id: 3, name: "Ernst&Young", value: "ey" },
             ]}
-            handleChange={(e) => setDrop(e.target.value)}
+            handleChange={(e) => setCompany(e.target.value)}
           />
         </S.StyleInputField>
         <S.StyleInputField>
           <InputField
             type="longtext"
             placeholder="Enter your address"
-            handleChange={(e) => setLong(e.target.value)}
+            handleChange={(e) => setAddress(e.target.value)}
           />
         </S.StyleInputField>
         <Button type="submit" color="primary">

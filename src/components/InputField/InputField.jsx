@@ -6,7 +6,6 @@ function InputField({ value, placeholder, type, handleChange, options, name }) {
     case "number":
       return (
         <S.Input
-          value={value}
           type="number"
           step="0.1"
           placeholder={placeholder}
@@ -16,7 +15,6 @@ function InputField({ value, placeholder, type, handleChange, options, name }) {
     case "longtext":
       return (
         <S.TextArea
-          value={value}
           placeholder={placeholder}
           onChange={handleChange}
         ></S.TextArea>
@@ -46,9 +44,7 @@ function InputField({ value, placeholder, type, handleChange, options, name }) {
     default:
       return (
         <S.Input
-          value={value}
           type="text"
-          maxLength="15"
           placeholder={placeholder}
           onChange={handleChange}
         />
