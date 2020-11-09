@@ -8,6 +8,7 @@ const ProductSelectionLazy = lazy(() =>
 );
 const AboutLazy = lazy(() => import("./pages/About/About"));
 const HomeLazy = lazy(() => import("./pages/Home/Home"));
+const ConfirmLazy = lazy(() => import("./pages/Confirmation/Confirmation"));
 
 function Routes() {
   return (
@@ -17,6 +18,7 @@ function Routes() {
         <Switch>
           <Route exact path="/order" component={ProductSelectionLazy} />
           <Route exact path="/about" component={AboutLazy} />
+          <Route exact path="/confirm" component={ConfirmLazy} />
           <Route exact path="/" component={HomeLazy} />
         </Switch>
       </Suspense>

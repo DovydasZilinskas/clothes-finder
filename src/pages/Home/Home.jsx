@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Section, InputField, Button } from "../../components";
 import * as S from "./Home.style";
 import { useHistory } from "react-router-dom";
+import { UserContext } from "../../context/user.context";
 
-function createUser(name, company, address, history) {
+function createUser(name, company, address, history, user) {
   fetch("http://localhost:8080/add-user", {
     method: "POST",
     headers: {
@@ -12,8 +13,9 @@ function createUser(name, company, address, history) {
     body: JSON.stringify({ name, company, address }),
   })
     .then((data) => data.json())
-    .then((insertId) => {
-      console.log(insertId);
+    .then((data) => {
+      console.log(data);
+      user.setState({ data });
       history.push("/order");
     })
     .catch((err) => console.log(err));
@@ -23,6 +25,7 @@ function Home() {
   const [name, setName] = useState();
   const [company, setCompany] = useState();
   const [address, setAddress] = useState();
+  const user = useContext(UserContext);
 
   const history = useHistory();
 
@@ -32,7 +35,7 @@ function Home() {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          createUser(name, company, address, history);
+          createUser(name, company, address, history, user);
         }}
       >
         <S.StyleInputField>
